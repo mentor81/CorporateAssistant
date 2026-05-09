@@ -1,1 +1,1 @@
-from app.api.routes import auth, hr, general
+from app.api.routes import auth, hr, general, rnd

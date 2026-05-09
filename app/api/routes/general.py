@@ -5,7 +5,7 @@ from app.core.security import get_current_user
 from app.schemas.prompt import PromptRequest
 from app.services.ollama_service import call_ollama
 from app.core.prompts import EN_PER_TRANSLATE_SYSTEM_MODEL
-router = APIRouter(prefix="/general", tags=["general"])
+router = APIRouter(prefix="/general", tags=["General"])
 
 
 @router.post("/generate")
@@ -14,7 +14,7 @@ def generate(
     current_user: dict = Security(get_current_user, scopes=["r&d"])
 ):
     output = call_ollama(
-        model=settings.qwen_model,
+        model=req.model,
         messages=[
             {"role": "system", "content": req.system_prompt},
             {"role": "user", "content": req.user_prompt},
@@ -28,7 +28,7 @@ def generate(
 @router.get("/translate")
 def translate(text: str):
     output = call_ollama(
-        model=settings.qwen_model,
+        model=settings.gemma_model,
         messages=[
             {
                 "role": "system",
@@ -39,7 +39,7 @@ def translate(text: str):
                 "content": text
             }
         ],
-        num_predict=1024,
+        num_predict=2048,
         temperature=0.1
     )
 

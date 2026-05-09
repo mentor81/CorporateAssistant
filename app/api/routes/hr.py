@@ -15,7 +15,7 @@ from app.services.candidate_service import candidate_to_json_string
 from app.core.prompts import CV_EVALUATION_SYSTEM_PROMPT, build_hr_evaluation_user_prompt, CV_PARSER_SYSTEM_PROMPT
 
 
-router = APIRouter(prefix="/hr", tags=["hr"])
+router = APIRouter(prefix="/hr", tags=["HR"])
 
 
 def get_db():
